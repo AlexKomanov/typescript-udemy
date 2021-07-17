@@ -3,12 +3,13 @@
  * @description: interface provided to 'addMarker' method
  * @param: location: {lat: number, lng: number}
  */
-interface Mappable {
+export interface Mappable {
   location: {
     lat: number;
     lng: number;
   };
   markerContent(): string;
+  color: string;
 }
 
 export class CustomMap {
