@@ -1,19 +1,35 @@
+@classDecorator
 class CarDecorator {
   @fieldDecorator
   color: string = "white";
 
+  @accessDecorator
   get formattedColor(): string {
     return `This car color is ${this.color}.`;
   }
 
   @logError("The car has crashed!")
-  drive(): void {
+  drive(@parameterDecorator speed: string): void {
     throw new Error();
     console.log("I am driving");
   }
 }
 
+function classDecorator(constructor: Function){
+    console.log(constructor);
+    
+}
+
+function parameterDecorator(target: any, key: string, index: number) {
+    console.log(key, index);
+  }
+
 function fieldDecorator(target: any, key: string) {
+  console.log(target);
+  console.log(key);
+}
+
+function accessDecorator(target: any, key: string) {
   console.log(target);
   console.log(key);
 }
@@ -31,4 +47,4 @@ function logError(errorMessage: string) {
     };
   };
 }
-new CarDecorator().drive();
+new CarDecorator().drive('123');
